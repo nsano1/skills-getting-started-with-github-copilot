@@ -20,11 +20,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
+        // Create a list of participants with boxed styling
+        const participantsList = details.participants.length > 0
+          ? details.participants.map(participant => `<span class="participant-box">${participant.replace(/\./g, ' ')}</span>`).join("")
+          : "None";
+
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <hr />
+          <p class="participants-title">Current Participants:</p>
+          <div>${participantsList}</div>
         `;
 
         activitiesList.appendChild(activityCard);
